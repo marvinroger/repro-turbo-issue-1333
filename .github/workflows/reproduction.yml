@@ -1,0 +1,12 @@
+name: reproduction
+on: [push]
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - run: npm i
+      - run: npx turbo run build --filter="...[origin/other-branch]"
